@@ -17,6 +17,8 @@ export default {
 .hallRight {
   width: 300px;
   height: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
   position: sticky;
   top: 0px;
   padding: 0 5px;

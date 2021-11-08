@@ -11,11 +11,13 @@
           <router-view />
         </div>
         <HallRight  :isShowHead="isShowHead" />
+        <div class="toTopBtnDom">
+          <SuspensionCom @myClick="toTop()" />
+        </div>
       </div>
     </div>
     <FooterCom :isShowFooter="isShowFooter" />
     <!-- <div class="toTopBtn" @click="toTop()"></div> -->
-    <SuspensionCom @myClick="toTop()" />
   </div>
 </template>
 
@@ -120,19 +122,28 @@ export default {
       overflow-y: scroll;
       padding: 10px 300px;
       display: flex;
-      // position: relative;
+      justify-content: center;
+      position: relative;
       .hallSetw {
         box-sizing: border-box;
         min-height: 100%;
         padding: 0px 5px;
         width: 100%;
-        max-width: 1200px;
-        margin: 0 auto;
+        max-width: 900px;
+        position: relative;
+        // margin: 0 auto;
         flex: 1;
         .currentView {
           min-height: 100%;
           background-color: #fff;
         }
+      }
+      .toTopBtnDom {
+        height: 100%;
+        width: 0;
+        top: 0;
+        position: sticky;
+        background-color: rgba(0, 0, 0, 0.1);
       }
     }
   }
