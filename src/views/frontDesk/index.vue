@@ -1,3 +1,7 @@
+<!--
+ File Name  : index.vue
+ Description: 前台结构
+-->
 <template>
   <div class="hallPage">
     <HeadCom :isShowHead="isShowHead" />
@@ -14,7 +18,6 @@
       </div>
     </div>
     <FooterCom :isShowFooter="isShowFooter" />
-    <!-- <div class="toTopBtn" @click="toTop()"></div> -->
   </div>
 </template>
 
@@ -140,7 +143,6 @@ export default {
         width: 100%;
         max-width: 900px;
         position: relative;
-        margin-bottom: 10px;
         flex: 1;
         .currentView {
           min-height: 100%;
@@ -197,7 +199,7 @@ body {
     min-height: 12px;
     min-width: 8px;
     border-radius: 6px;
-    background-color: rgb(159, 159, 159);
+    background-color: rgb(194, 194, 194);
 }
 
 li {

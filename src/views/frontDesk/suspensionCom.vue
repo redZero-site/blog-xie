@@ -1,7 +1,15 @@
+<!--
+ File Name  : suspensionCom.vue
+ Description: 悬浮按钮
+-->
 <template>
   <div class="suspensionCom">
-    <div @click="$emit('isToTop')" class="returnTopBtn" v-show="isShowToTop">111</div>
-    <div @click="toPrevious" class="returnPageBtn" v-show="isShowRetBtn">222</div>
+    <div @click="$emit('isToTop')" class="returnTopBtn" v-show="isShowToTop">
+      <span class="iconfont">&#xe666;</span>
+    </div>
+    <div @click="toPrevious" class="returnPageBtn" v-show="isShowRetBtn">
+      <span class="iconfont">&#xe67a;</span>
+    </div>
   </div>
 </template>
 
@@ -39,6 +47,18 @@ export default {
     border-radius: 50%;
     margin-bottom: 10px;
     box-shadow: 0 0 5px 3px rgba(0, 0, 0, 0.03);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .iconfont {
+      font-size: 22px;
+      color: #999;
+    }
+    &:hover {
+      .iconfont {
+        color: #ccc;
+      }
+    }
   }
 }
 </style>

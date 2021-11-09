@@ -1,3 +1,7 @@
+<!--
+ File Name  : detailPage.vue
+ Description: 文章详情
+-->
 <template>
   <div class="detailPage">
     文章

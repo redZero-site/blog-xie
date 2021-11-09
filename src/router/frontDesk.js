@@ -1,6 +1,5 @@
 export default [
     {
-        
         path: '/frontDesk',
         component: () => import('@/views/frontDesk/index.vue'),
         children: [

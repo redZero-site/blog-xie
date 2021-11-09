@@ -1,3 +1,7 @@
+<!--
+ File Name  : articleList.vue
+ Description: 文章列表
+-->
 <template>
   <ul class="articleList">
     <li class="articleLI" @click="viewDetail" v-for="(item, index) in 50" :key="'lis_'+index">{{ item }}</li>

@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import FrontDesk from './frontDesk.js'
+import Editor from './editor.js'
 
 Vue.use(VueRouter)
 
@@ -17,7 +18,8 @@ const routes = [
     ]
   }
 ].concat(
-  FrontDesk
+  FrontDesk,
+  Editor
 )
 
 const router = new VueRouter({

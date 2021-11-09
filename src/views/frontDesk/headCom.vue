@@ -1,5 +1,9 @@
+<!--
+ File Name  : headCom.vue
+ Description: 顶部导航
+-->
 <template>
-  <div class="headCom" :class="{ isShowHead }"></div>
+  <div class="headCom conPadding" :class="{ isShowHead }"></div>
 </template>
 
 <script>

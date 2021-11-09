@@ -1,3 +1,7 @@
+<!--
+ File Name  : hallRight.vue
+ Description: 右侧菜单
+-->
 <template>
   <div class="hallRight" :class="{ isFlex: !isShowHead }">
     <div class="authorDom"></div>

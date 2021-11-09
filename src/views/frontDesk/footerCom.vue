@@ -1,3 +1,7 @@
+<!--
+ File Name  : footerCom.vue
+ Description: 脚注
+-->
 <template>
   <div class="footerCom" :class="{ isShowFooter }">
     <div class="bomCom">
