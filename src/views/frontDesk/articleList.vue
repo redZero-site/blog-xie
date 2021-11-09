@@ -9,6 +9,8 @@ export default {
   data() {
     return {}
   },
+  methods() {
+  },
   methods: {
     viewDetail() {
       this.$router.push('/frontDesk/detailPage')

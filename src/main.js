@@ -3,6 +3,10 @@ import App from './App.vue'
 import router from './router'
 import store from './store'
 
+import frontDesk from '@/utils/frontDesk'
+
+Vue.prototype.FRONTDESK = frontDesk
+
 Vue.config.productionTip = false
 
 new Vue({

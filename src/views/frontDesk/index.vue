@@ -4,15 +4,12 @@
     <!-- 上下内边距 -->
     <div class="hallContent" :style="{ paddingTop: !isShowHead?'48px':0,paddingBottom:!isShowFooter?'70px':0 }">
       <!-- 左右内边距,滚动元素 -->
-      <div class="hallRolling">
+      <div class="hallRolling conPadding">
         <!-- 容器 -->
-        <div class="hallSetw" ref="hallSetw">
-          <!-- <div :style="{height: toTopHeitht+'px'}" class="toTopDom"></div> -->
-          <router-view />
-        </div>
-        <HallRight  :isShowHead="isShowHead" />
+        <router-view class="hallSetw" />
+        <HallRight class="HallRight"  :isShowHead="isShowHead" />
         <div class="toTopBtnDom">
-          <SuspensionCom @myClick="toTop()" />
+          <SuspensionCom @isToTop="toTop()" :isShowToTop="isShowToTop" :isShowRetBtn="isShowRetBtn" />
         </div>
       </div>
     </div>
@@ -37,7 +34,18 @@ export default {
     return {
       isShowHead: false,
       isShowFooter: false,
+      isShowToTop: false,
+      isShowRetBtn: false,
       currentView: 'ArticleList',
+    }
+  },
+  watch: {
+    $route: {
+      handler(val, oldVal) {
+        this.setRetBtn(val)
+      },
+      // 深度观察监听
+      deep: true
     }
   },
   mounted() {
@@ -45,59 +53,60 @@ export default {
         document.addEventListener('DOMMouseScroll', this.scrollFunc, false);  
     }
     window.onmousewheel = document.onmousewheel = this.scrollFunc;
+    this.setRetBtn(this.$route)
   },
   methods: {
+    setRetBtn(val) {
+      if (val.meta.isShowRetBtn) {
+        this.isShowRetBtn = true
+      } else {
+        this.isShowRetBtn = false
+      }
+    },
     scrollFunc(e) {
       e = e || window.event
       if (e.wheelDelta) {
         //判断浏览器IE，谷歌滑轮事件
         if (e.wheelDelta > 0) {
           //当滑轮向上滚动时
-          this.onClickBacktop(false)
+          this.isShowHead = false
         }
         if (e.wheelDelta < 0) {
           //当滑轮向下滚动时
-          this.onClickBacktop(true)
+          this.isShowHead = true
         }
       } else if (e.detail) {
         //Firefox滑轮事件
         if (e.detail > 0) {
           //当滑轮向上滚动时
-          this.onClickBacktop(false)
+          this.isShowHead = false
         }
         if (e.detail < 0) {
           //当滑轮向下滚动时
-          this.onClickBacktop(true)
+          this.isShowHead = true
         }
+      }
+      let RolScrTop = document.querySelector('.hallRolling').scrollTop
+      let RolScrHeig = document.querySelector('.hallRolling').offsetHeight
+      let SetwHeig = document.querySelector('.hallSetw').scrollHeight
+      if ((RolScrTop + RolScrHeig + 100) >= SetwHeig) {
+        this.isShowFooter = false
+      } else {
+        this.isShowFooter = true
+      }
+      if (RolScrTop >= 200) {
+        this.isShowToTop = true
+      } else {
+        this.isShowToTop = false
       }
     },
     onClickBacktop(isShow) {
       this.isShowHead = isShow
       this.isShowFooter = !isShow
+      this.isShowToTop = isShow
     },
     toTop() {
-      let hallRolling = document.querySelector('.hallRolling')
-      let then = this
-      let setIn = setInterval(() => {
-        if (hallRolling.scrollTop > 0) {
-          if (hallRolling.scrollTop > 640) {
-            hallRolling.scrollTop = hallRolling.scrollTop - 32
-          } else if (hallRolling.scrollTop > 320) {
-            hallRolling.scrollTop = hallRolling.scrollTop - 16
-          } else if (hallRolling.scrollTop > 160) {
-            hallRolling.scrollTop = hallRolling.scrollTop - 8
-          } else if (hallRolling.scrollTop > 80) {
-            hallRolling.scrollTop = hallRolling.scrollTop - 4
-          } else if (hallRolling.scrollTop > 40) {
-            hallRolling.scrollTop = hallRolling.scrollTop - 2
-          } else {
-            hallRolling.scrollTop = hallRolling.scrollTop - 1
-          }
-        } else {
-          clearInterval(setIn)
-          then.onClickBacktop(false)
-        }
-      }, 1)
+      this.FRONTDESK.toTop('hallRolling', this.onClickBacktop)
     }
   }
 }
@@ -131,7 +140,7 @@ export default {
         width: 100%;
         max-width: 900px;
         position: relative;
-        // margin: 0 auto;
+        margin-bottom: 10px;
         flex: 1;
         .currentView {
           min-height: 100%;
@@ -193,5 +202,34 @@ body {
 
 li {
   list-style-type: none;
+}
+
+@media screen and (max-width: 1500px) {
+    .conPadding {
+        padding-left: 200px !important;
+        padding-right: 200px !important;
+    }
+}
+@media screen and (max-width: 1300px) {
+    .conPadding {
+        padding-left: 100px !important;
+        padding-right: 100px !important;
+    }
+}
+@media screen and (max-width: 1200px) {
+    .conPadding {
+        padding-left: 0px !important;
+        padding-right: 0px !important;
+    }
+    .suspensionCom {
+      right: 60px !important;
+    }
+}
+@media screen and (max-width: 900px) {
+    .conPadding {
+        .HallRight {
+          display: none;
+        }
+    }
 }
 </style>

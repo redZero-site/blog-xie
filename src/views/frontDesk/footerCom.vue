@@ -1,8 +1,10 @@
 <template>
   <div class="footerCom" :class="{ isShowFooter }">
-    <span>系统是由vue+node开发</span>
-    <span>张三</span>
-    <a>粤ICP备2021127879号</a>
+    <div class="bomCom">
+      <span>系统是由vue+node开发</span>
+      <span>张三</span>
+      <a>粤ICP备2021127879号</a>
+    </div>
   </div>
 </template>
 
@@ -16,25 +18,32 @@ export default {
 .footerCom {
   box-sizing: border-box;
   width: 100vw;
-  height: 70px;
+  height: 90px;
   position: fixed;
   bottom: 0;
   left: 0px;
+  padding-top: 20px;
   // background-color: rgb(246, 246, 246);
-  background-color: #fff;
-  box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.05);
   transition: all 0.3s;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  padding: 10px;
-  span {
-    font-size: 12px;
-    color: #666;
+  &:hover {
+    bottom: 0 !important;
   }
-  a {
-    font-size: 12px;
+  .bomCom {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 3px 5px 0px rgba(0, 0, 0, 0.05);
+    background-color: #fff;
+    span {
+      font-size: 12px;
+      color: #666;
+    }
+    a {
+      font-size: 12px;
+    }
   }
 }
 .isShowFooter {
